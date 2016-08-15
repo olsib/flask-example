@@ -1,5 +1,4 @@
 Flask==0.11.1
-mysql-server
 flask-mysqldb
 flask-mysql
 MySQL-python
