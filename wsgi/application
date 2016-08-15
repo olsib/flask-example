@@ -31,4 +31,4 @@ if ON_OPENSHIFT:
         pass
 
 
-from app import app as application
+from myflaskapp import app as application
