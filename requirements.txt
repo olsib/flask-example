@@ -10,7 +10,6 @@ decorator==3.4.0
 docopt==0.4.0
 itsdangerous==0.23
 mandrill==1.0.53
-mysql-connector-python==1.1.4
 requests==2.0.1
 sqlalchemy-migrate==0.7.2
 wsgiref==0.1.2
