@@ -1,11 +1,11 @@
 import json
-import PyMySQL 
+import MySQLdb
 
 app = Flask(__name__)
 
 @app.before_request
 def db_connect():
-  g.conn = PyMySQL.connect(host='localhost',
+  g.conn = MySQLdb.connect(host='localhost',
                               user='testuser',
                               passwd='Welcome1',
                               db='testdb')
