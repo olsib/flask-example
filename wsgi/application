@@ -21,14 +21,14 @@ try:
 except IOError:
     pass
 
-if ON_OPENSHIFT:
-    try:
-        print("IMPORTING - PyMySQL as MySQLdb")
-        import pymysql
-        pymysql.install_as_MySQLdb()
-    except ImportError:
-        print("CANT FIND - PyMySQL")
-        pass
+#if ON_OPENSHIFT:
+#    try:
+#        print("IMPORTING - PyMySQL as MySQLdb")
+#        import pymysql
+#        pymysql.install_as_MySQLdb()
+#    except ImportError:
+#        print("CANT FIND - PyMySQL")
+#        pass
 
 
 from myflaskapp import app as application
