@@ -3,6 +3,7 @@
 import json
 import pymysql
 import pymysql.cursors
+from flask import Flask
 
 app = Flask(__name__)
 
