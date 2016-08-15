@@ -12,4 +12,4 @@ itsdangerous==0.23
 mandrill==1.0.53
 requests==2.0.1
 sqlalchemy-migrate==0.7.2
-pymysql==0.7.6
+pymysql==0.6.2
