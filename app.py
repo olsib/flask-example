@@ -5,6 +5,9 @@ import pymysql
 import pymysql.cursors
 from flask import Flask
 from flask import g
+from flask import Response
+from flask import request
+
 
 app = Flask(__name__)
 
