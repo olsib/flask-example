@@ -9,8 +9,8 @@ app = Flask(__name__)
 
 @app.before_request
 def db_connect():
-  g.conn = pymysql.connect(host='localhost',
-                              user='testuser',
+  g.conn = pymysql.connect(host='172.30.49.196',
+                              user='root',
                               passwd='Welcome1',
                               db='testdb')
   g.cursor = g.conn.cursor()
