@@ -7,6 +7,7 @@ from flask import Flask
 from flask import g
 from flask import Response
 from flask import request
+from flask import render_template, jsonify
 
 
 app = Flask(__name__)
@@ -39,8 +40,11 @@ def hello():
 def names():
   result = query_db("SELECT firstname,lastname FROM testdb.Persons")
   data = json.dumps(result)
-  resp = Response(data, status=200, mimetype='application/json')
-  return resp
+  new_obj = json.loads(data)
+  return render_template('index.html', json = data, obj = new_obj)
+
+  #resp = Response(data, status=200, mimetype='application/json')
+  #return resp
 
 @app.route("/add", methods=['POST'])
 def add():
