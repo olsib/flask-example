@@ -56,7 +56,7 @@ def names():
       global sync2_current
       sync2_current = new_obj_current[i]['linkid_current']
 
-  print dist1_current,dist2_current,sync1_current,sync2_current
+#  print dist1_current,dist2_current,sync1_current,sync2_current
 
   result_latest = query_db("SELECT name, linkid_latest FROM linkid_db.nodes")
   data_latest = json.dumps(result_latest)
@@ -77,7 +77,7 @@ def names():
   
 #  print data_current,data_latest
   both_obj = data_current + data_latest
-  print both_obj
+  print(both_obj)
 
 #  return render_template('index.html', json = data_current, obj = both_obj)
   if dist1_latest >= dist1_current and dist2_latest >= dist2_current:
