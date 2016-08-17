@@ -35,7 +35,7 @@ def query_db(query, args=(), one=False):
 @app.route("/")
 def hello():
 #  return "Whazzuppp!"
-  return redirect("127.0.0.1:5000/names")
+  return redirect("127.0.0.1:5005/names")
  
 @app.route("/names", methods=['GET'])
 def names():
@@ -43,7 +43,6 @@ def names():
   data_current = json.dumps(result_current)
   new_obj_current = json.loads(data_current)
   for i in range(0,4):
-    print new_obj_current[i]['name']
     if new_obj_current[i]['name'] == 'dist1':
       global dist1_current
       dist1_current = new_obj_current[i]['linkid_current']
@@ -56,13 +55,13 @@ def names():
     else:
       global sync2_current
       sync2_current = new_obj_current[i]['linkid_current']
+
   print dist1_current,dist2_current,sync1_current,sync2_current
 
   result_latest = query_db("SELECT name, linkid_latest FROM linkid_db.nodes")
   data_latest = json.dumps(result_latest)
   new_obj_latest = json.loads(data_latest)
   for j in range(0,4):
-    print new_obj_latest[j]['name']
     if new_obj_latest[j]['name'] == 'dist1':
       global dist1_latest
       dist1_latest = new_obj_latest[j]['linkid_latest']
@@ -75,7 +74,7 @@ def names():
     else:
       global sync2_latest
       sync2_latest = new_obj_latest[j]['linkid_latest']
-  print dist1_latest,dist2_latest,sync1_latest,sync2_latest
+  
   print data_current,data_latest
   both_obj = data_current + data_latest
   print both_obj
