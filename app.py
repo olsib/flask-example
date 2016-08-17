@@ -87,8 +87,10 @@ def names():
 
 #  return render_template('index.html', json = data_current, obj = both_obj)
   if dist1_latest <= dist1_current and dist2_latest <= dist2_current and sync1_latest <= sync1_current and sync2_latest <= sync2_current:
+    print("dist1_latest","dist1_current","dist2_latest","dist2_current","sync1_latest","sync1_current","sync2_latest","sync2_current")
     return render_template('indexgreen.html', title = 'Home', dist1_current=dist1_current, dist2_current=dist2_current,sync1_current=sync1_current,sync2_current=sync2_current)
   elif dist1_latest > dist1_current or dist2_latest > dist2_current or sync1_latest > sync1_current or sync2_latest > sync2_current:
+    print("dist1_latest","dist1_current","dist2_latest","dist2_current","sync1_latest","sync1_current","sync2_latest","sync2_current")
     return render_template('indexred.html', title = 'Home', dist1_current=dist1_current, dist2_current=dist2_current,sync1_current=sync1_current,sync2_current=sync2_current)
   else:
     return render_template('indexyellow.html', title = 'Home', dist1_current=dist1_current, dist2_current=dist2_current,sync1_current=sync1_current,sync2_current=sync2_current)
