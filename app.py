@@ -35,29 +35,35 @@ def query_db(query, args=(), one=False):
 @app.route("/")
 def hello():
 #  return "Whazzuppp!"
-  return redirect("127.0.0.1:5005/names")
+  return redirect("127.0.0.1:5005/displayIDs")
  
-@app.route("/names", methods=['GET'])
+@app.route("/displayIDs", methods=['GET'])
 def names():
   result_current = query_db("SELECT name, linkid_current FROM linkid_db.nodes_current")
   data_current = json.dumps(result_current)
   new_obj_current = json.loads(data_current)
+  update_sql = "UPDATE linkid_db.nodes SET linkid_latest"
   for i in range(0,4):
     if new_obj_current[i]['name'] == 'dist1':
       global dist1_current
       dist1_current = new_obj_current[i]['linkid_current']
+      update_sql_dist1 = update_sql + " = %s" % dist1_current + " WHERE ID=1;"
     elif new_obj_current[i]['name'] == 'dist2':
       global dist2_current
       dist2_current = new_obj_current[i]['linkid_current']
+      update_sql_dist2 = update_sql + " = %s" % dist2_current + " WHERE ID=2;"
     elif new_obj_current[i]['name'] == 'sync1':
       global sync1_current
       sync1_current = new_obj_current[i]['linkid_current']
+      update_sql_sync1 = update_sql + " = %s" % sync1_current + " WHERE ID=3;"
     else:
       global sync2_current
       sync2_current = new_obj_current[i]['linkid_current']
+      update_sql_sync2 = update_sql + " = %s" % sync2_current + " WHERE ID=4;"
 
 #  print dist1_current,dist2_current,sync1_current,sync2_current
-
+  update(update_sql_dist1,update_sql_dist2,update_sql_sync1,update_sql_sync2)
+ 
   result_latest = query_db("SELECT name, linkid_latest FROM linkid_db.nodes")
   data_latest = json.dumps(result_latest)
   new_obj_latest = json.loads(data_latest)
@@ -80,12 +86,18 @@ def names():
   print(both_obj)
 
 #  return render_template('index.html', json = data_current, obj = both_obj)
-  if dist1_latest >= dist1_current and dist2_latest >= dist2_current:
-    return render_template('indexgreen.html', title = 'Home', dist1_current=dist1_current, dist2_current=dist2_current)
-  elif dist1_latest <= dist1_current or dist2_latest <= dist2_current:
-    return render_template('indexred.html', title = 'Home', dist1_current=dist1_current, dist2_current=dist2_current)
+  if dist1_latest >= dist1_current and dist2_latest >= dist2_current and sync1_latest >= sync1_current and sync2_latest >= sync2_current:
+    return render_template('indexgreen.html', title = 'Home', dist1_current=dist1_current, dist2_current=dist2_current,sync1_current=sync1_current,sync2_current=sync2_current)
+  elif dist1_latest <= dist1_current or dist2_latest <= dist2_current or sync1_latest >= sync1_current or sync2_latest >= sync2_current:
+    return render_template('indexred.html', title = 'Home', dist1_current=dist1_current, dist2_current=dist2_current,sync1_current=sync1_current,sync2_current=sync2_current)
   else:
-    return render_template('indexyellow.html', title = 'Home', dist1_current=dist1_current, dist2_current=dist2_current)
+    return render_template('indexyellow.html', title = 'Home', dist1_current=dist1_current, dist2_current=dist2_current,sync1_current=sync1_current,sync2_current=sync2_current)
+
+def update(*args):
+  for a in args:
+    g.cursor.execute(a)
+    g.conn.commit()
+  return
 
 @app.route("/add", methods=['POST'])
 def add():
