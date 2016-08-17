@@ -75,7 +75,7 @@ def names():
       global sync2_latest
       sync2_latest = new_obj_latest[j]['linkid_latest']
   
-  print data_current,data_latest
+#  print data_current,data_latest
   both_obj = data_current + data_latest
   print both_obj
 
