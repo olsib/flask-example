@@ -30,7 +30,6 @@ def query_db(query, args=(), one=False):
   g.cursor.execute(query, args)
   rv = [dict((g.cursor.description[idx][0], value)
   for idx, value in enumerate(row)) for row in g.cursor.fetchall()]
-  print rv
   return (rv[0] if rv else None) if one else rv
 
 @app.route("/")
