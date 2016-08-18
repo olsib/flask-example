@@ -3,23 +3,25 @@
     <title>{{ title }} - Platform Management Support</title>
   </head>
   <body>
-          <table bgcolor="yellow" width="400">
+          <h2>You entered:</h2>
+          <table bgcolor="yellow" width="400" align="center">
                   <tr>
                     <th>Dist1</th>
                     <th>Dist2</th>
                   </tr>
                   <tr>
-                    <td>{{  dist1_current }}</td>
-                    <td>{{  dist2_current }}</td>
+                    <td align="center">{{  dist1_current }}</td>
+                    <td align="center">{{  dist2_current }}</td>
                   </tr>
                   <tr>
                     <th>Sync1</th>
                     <th>Sync2</th>
                   </tr>
                   <tr>
-                    <td>{{  sync1_current }}</td>
-                    <td>{{  sync2_current }}</td>
+                    <td align="center">{{  sync1_current }}</td>
+                    <td align="center">{{  sync2_current }}</td>
                   </tr>
           </table>
-  </body>
+          <h2>Warning, there is some inconsistency. Please make sure the values you entered are right:</h2>
+   </body>
 </html>
